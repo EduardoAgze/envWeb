@@ -76,23 +76,3 @@ class ListaTareas:
         print(f"Eliminada: {descripcion}")
 
 
-
-
-
-
-if __name__ == "__main__":
-    lista = ListaTareas()
-    lista.agregar_tarea("Tarea 1")
-    lista.agregar_tarea("Tarea 2")
-    lista.agregar_tarea("Tarea 3")
-    
-    print("Estado inicial:")
-    lista.mostrar_tareas()
-    
-    lista.eliminar_tarea("Tarea 2")  # Eliminar del medio
-    lista.eliminar_tarea("Tarea 1")  # Eliminar la cabeza
-    lista.eliminar_tarea("Tarea Inexistente") # Probar caso negativo
-    
-    print("\nEstado final:")
-    lista.mostrar_tareas()
-
