@@ -74,5 +74,8 @@ class ListaTareas:
 
         anterior.siguiente = actual.siguiente 
         print(f"Eliminada: {descripcion}")
+<<<<<<< HEAD
 
 
+=======
+>>>>>>> ecd5cce (Se creó una estructura básica del html)
