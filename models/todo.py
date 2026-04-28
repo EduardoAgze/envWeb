@@ -1,16 +1,21 @@
 class Nodo:
+    """Representa un nodo en la lista enlazada """
     def __init__(self, datos):
+        """Inicializa un nodo con sus datos y el estado "pendiente" """
         self.datos = datos
         self.estado = "pendiente"
         self.siguiente = None
         
 class ListaTareas:
+    """Representa la lista enlazada de tareas """
     def __init__(self):
+        """inicializa la lista con la cabeza en None """
         self.cabeza = None
 
 
 
     def agregar_tarea(self, descripcion):
+        """Agrega una nueva tarea al final de la lista """
         nuevo_nodo = Nodo(descripcion)
         if self.cabeza is None:
             self.cabeza = nuevo_nodo
@@ -23,59 +28,41 @@ class ListaTareas:
 
 
 
-    def mostrar_tareas(self):
-        actual = self.cabeza
-        
-        if actual is None:
-            print("La lista está vacía.")
-            return
-        
-        print("--- Lista de Tareas ---")
-        
-        while actual is not None:            
-            print(f"[{actual.estado}] {actual.datos}")
-            actual = actual.siguiente
-
-
-
     def marcar_completada(self, descripcion):
+        """Marca una tarea como completada buscando por su descripción,si no encuentra pasa al sgte nodo."""
         actual = self.cabeza
             
         while actual is not None:
             if actual.datos == descripcion:
-                actual.estado = "completada"
-                print("Exito")  
+                actual.estado = "completada"  
                 return                                
                                                 
             actual = actual.siguiente
 
-        print(f"Error: No se encontró la tarea '{descripcion}'.")
+
+
+
 
     def eliminar_tarea(self, descripcion):
+        """Elimina una tarea de la lista buscando por su descripción, verificando si es la cabeza 
+            o si se encuentra en el medio o al final de la lista."""
         actual = self.cabeza
         anterior = None
 
         if actual is not None and actual.datos == descripcion:
             self.cabeza = actual.siguiente  
-            print(f"Eliminada: {descripcion}")
             return
 
 
         while actual is not None and actual.datos != descripcion:
             anterior = actual     
-            actual = actual.siguiente     
+            actual = actual.siguiente    
+        
 
-            
-        if actual is None:
-            print(f"No se encontró: {descripcion}")
-            return
-
-
-        anterior.siguiente = actual.siguiente 
-        print(f"Eliminada: {descripcion}")
 
 
     def obtener_todas(self):
+        """Obtiene todas las tareas en la lista y las devuelve como una lista de diccionarios con su descripción y estado."""
         resultado = []
         
         actual = self.cabeza
