@@ -12,29 +12,33 @@
 <body>
     <h1>-- Lista de Tareas --</h1>
 
-    <form>
-        <input type="text" placeholder="Escribe una nueva tarea...">
+    <form method="POST" action="/agregar">
+
+        <input type="text" placeholder="Escribe una nueva tarea..." name="descripcion" required>
         <button type="submit">Agregar</button>
+
     </form>
-    <ul>   
-        <li class="tarea-item">   
-            <span>Ejemplo de tarea</span>
+    <ul>
+    {% for tarea in tareas %}
+    <li class="tarea-item {{ tarea.estado }}">
+        <span>{{ tarea.datos }}</span>
+        <div class="botones">
             
-            <div class ="botones">
-                <button>Completada</button>
-                <button>Eliminar</button>
-            </div>
-        </li>
-
-        <li class="tarea-item completada">   
-            <span>tarea completada</span>
             
-            <div class ="botones">
-                <button>Completada</button>
-                <button>Eliminar</button>
-            </div>
-        </li>
+            <form method="POST" action="/completar">
+                <input type="hidden" name="descripcion" value="{{ tarea.datos }}">
+                <button type="submit">✓</button>
+            </form>
+                 
+            <form method="POST" action="/eliminar">
+                <input type="hidden" name="descripcion" value="{{ tarea.datos }}">
+                <button type="submit">✕</button>
+            </form>
 
+                      
+        </div>
+    </li>
+    {% endfor %}
     </ul>
 
 </body>

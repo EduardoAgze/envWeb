@@ -41,7 +41,6 @@ class ListaTareas:
     def marcar_completada(self, descripcion):
         actual = self.cabeza
             
-        # Recorré la lista
         while actual is not None:
             if actual.datos == descripcion:
                 actual.estado = "completada"
@@ -74,4 +73,17 @@ class ListaTareas:
 
         anterior.siguiente = actual.siguiente 
         print(f"Eliminada: {descripcion}")
+
+
+    def obtener_todas(self):
+        resultado = []
         
+        actual = self.cabeza
+        
+        while actual is not None:
+            tarea = {"datos": actual.datos,"estado": actual.estado}
+            resultado.append(tarea)
+            actual = actual.siguiente
+        return resultado
+        
+
