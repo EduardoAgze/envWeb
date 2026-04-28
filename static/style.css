@@ -7,7 +7,7 @@
 
 /* Fondo y centrado general */
 body {
-    font-family: system-ui, sans-serif;
+    font-family: sans-serif;
     background-color: #d5d2d2;
     padding: 28px;
     display: flex;
@@ -38,7 +38,8 @@ form input {
     justify-content: space-between;
     margin-bottom: 10px;
     padding: 10px;
-    background-color: #d5d2d2;
+    background-color: #c1c1c1;
+    border-radius: 9%;
 }
 .tarea-item.completada {
     text-decoration: line-through;

@@ -56,7 +56,10 @@ class ListaTareas:
 
         while actual is not None and actual.datos != descripcion:
             anterior = actual     
-            actual = actual.siguiente    
+            actual = actual.siguiente   
+
+        if actual is not None:
+            anterior.siguiente = actual.siguiente
         
 
 
