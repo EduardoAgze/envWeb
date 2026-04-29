@@ -48,3 +48,7 @@ form input {
     text-decoration: line-through;
     color: #7f8c8d;
 }
+
+.botones {
+    padding-top: 13px;
+}

@@ -20,19 +20,29 @@
     </form>
     <ul>
     {% for tarea in tareas %}
-    <li class="tarea-item {{ tarea.estado }}">
-        <span>{{ tarea.datos }}</span>
+    <li class="tarea-item">
+       
+        <span class="tarea-item {{ tarea.estado }}" >{{ tarea.datos }}</span>
+        
+        
+        
         <div class="botones">
             
             
             <form method="POST" action="/completar">
-                <input type="hidden" name="descripcion" value="{{ tarea.datos }}">
-                <button type="submit">{{ "Completar" if tarea.estado == "pendiente" else "Pendiente" }}</button>
+                <input type="hidden" name="descripcion" value="{{ tarea.datos }}">    
+                <button type="submit">
+                    {{ metodos.completar_pendiente(tarea.datos) }}
+                </button>
             </form>
+
+
                  
             <form method="POST" action="/eliminar">
                 <input type="hidden" name="descripcion" value="{{ tarea.datos }}">
-                <button type="submit">Eliminar</button>
+                <button type="submit">
+                    Eliminar
+                </button>
             </form>
 
                     

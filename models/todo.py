@@ -81,3 +81,15 @@ class ListaTareas:
         return resultado
         
 
+    def completar_pendiente(self, descripcion):
+        """Marca una tarea como completada o pendiente dependiendo de su estado actual, buscando por su descripción."""
+        actual = self.cabeza
+            
+        while actual is not None:
+            if actual.datos == descripcion:
+                if actual.estado == "pendiente":
+                    return "Completar"
+                else:
+                    return "Pendiente"                                
+                                                
+            actual = actual.siguiente
