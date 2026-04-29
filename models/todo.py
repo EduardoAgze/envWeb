@@ -34,8 +34,12 @@ class ListaTareas:
             
         while actual is not None:
             if actual.datos == descripcion:
-                actual.estado = "completada"  
-                return                                
+                if actual.estado == "completada":
+                    actual.estado = "pendiente"
+                    return
+                else:
+                    actual.estado = "completada"  
+                    return                                
                                                 
             actual = actual.siguiente
 

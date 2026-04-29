@@ -27,7 +27,7 @@
             
             <form method="POST" action="/completar">
                 <input type="hidden" name="descripcion" value="{{ tarea.datos }}">
-                <button type="submit">Completar</button>
+                <button type="submit">{{ "Completar" if tarea.estado == "pendiente" else "Pendiente" }}</button>
             </form>
                  
             <form method="POST" action="/eliminar">
