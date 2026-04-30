@@ -13,9 +13,11 @@
     <h1>-- Lista de Tareas --</h1>
 
     <form method="POST" action="/agregar">
+        <div class="input-group">
+            <input type="text" placeholder="Título..." name="titulo" required>
+            <input type="text" placeholder="Escribe una nueva tarea..." name="descripcion" required>
+        </div>
 
-        <input type="text" placeholder="Escribe el título de la tarea..." name="titulo" required>
-        <input type="text" placeholder="Escribe una nueva tarea..." name="descripcion" required>
         <button type="submit">Agregar</button>
 
     </form>
