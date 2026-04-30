@@ -14,9 +14,10 @@ def index():
 
 def agregar():
     """Agrega una nueva tarea a la lista utilizando la descripción obtenida del formulario y redirige a la página principal."""
-    descripcion = request.form.get("descripcion")  
-    if descripcion:
-        metodos.agregar_tarea(descripcion)   
+    descripcion = request.form.get("descripcion")
+    titulo = request.form.get("titulo")
+    if descripcion and titulo:
+        metodos.agregar_tarea(descripcion, titulo)
     return redirect(url_for("index"))
 
 

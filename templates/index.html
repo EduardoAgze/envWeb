@@ -14,6 +14,7 @@
 
     <form method="POST" action="/agregar">
 
+        <input type="text" placeholder="Escribe el título de la tarea..." name="titulo" required>
         <input type="text" placeholder="Escribe una nueva tarea..." name="descripcion" required>
         <button type="submit">Agregar</button>
 
@@ -22,6 +23,7 @@
     {% for tarea in tareas %}
     <li class="tarea-item">
        
+        <strong>{{ tarea.titulo }}</strong>
         <span class="tarea-item {{ tarea.estado }}" >{{ tarea.datos }}</span>
         
         

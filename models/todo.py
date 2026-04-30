@@ -1,7 +1,8 @@
 class Nodo:
     """Representa un nodo en la lista enlazada """
-    def __init__(self, datos):
+    def __init__(self, datos, titulo):
         """Inicializa un nodo con sus datos y el estado "pendiente" """
+        self.titulo = titulo
         self.datos = datos
         self.estado = "pendiente"
         self.siguiente = None
@@ -14,9 +15,9 @@ class ListaTareas:
 
 
 
-    def agregar_tarea(self, descripcion):
+    def agregar_tarea(self, descripcion, titulo):
         """Agrega una nueva tarea al final de la lista """
-        nuevo_nodo = Nodo(descripcion)
+        nuevo_nodo = Nodo(descripcion, titulo)
         if self.cabeza is None:
             self.cabeza = nuevo_nodo
         else:
@@ -67,20 +68,6 @@ class ListaTareas:
         
 
 
-
-    def obtener_todas(self):
-        """Obtiene todas las tareas en la lista y las devuelve como una lista de diccionarios con su descripción y estado."""
-        resultado = []
-        
-        actual = self.cabeza
-        
-        while actual is not None:
-            tarea = {"datos": actual.datos,"estado": actual.estado}
-            resultado.append(tarea)
-            actual = actual.siguiente
-        return resultado
-        
-
     def completar_pendiente(self, descripcion):
         """Marca una tarea como completada o pendiente dependiendo de su estado actual, buscando por su descripción."""
         actual = self.cabeza
@@ -92,4 +79,18 @@ class ListaTareas:
                 else:
                     return "Pendiente"                                
                                                 
+            actual = actual.siguiente 
+
+
+    def obtener_todas(self):
+        """Obtiene todas las tareas en la lista y las devuelve como una lista de diccionarios con su descripción y estado."""
+        resultado = []
+        
+        actual = self.cabeza
+        
+        while actual is not None:
+            tarea = {"titulo": actual.titulo, "datos": actual.datos, "estado": actual.estado}
+            resultado.append(tarea)
             actual = actual.siguiente
+        return resultado
+        
