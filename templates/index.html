@@ -23,13 +23,10 @@
     </form>
     <ul>
     {% for tarea in tareas %}
-    <li class="tarea-item">
-       
+    <li class="tarea-item {{ tarea.estado }}">
         <strong>{{ tarea.titulo }}</strong>
-        <span class="tarea-item {{ tarea.estado }}" >{{ tarea.datos }}</span>
-        
-        
-        
+        <span class="descripcion">{{ tarea.datos }}</span>
+
         <div class="botones">
             
             
