@@ -4,53 +4,59 @@
     <meta charset="UTF-8">
     <meta name="viewport"
      content="width=device-width, initial-scale=1.0">
-    <title>To-doList</title>    
-    <link rel="stylesheet" href="../static/style.css">
+    <title>To-doList</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 </head>
 
 
 <body>
-    <h1>-- Lista de Tareas --</h1>
+    <div class="container">
+        <header>
+            <h1>Lista de Tareas</h1>
+            <p class="site-subtitle">Organiza tus tareas diarias</p>
+        </header>
 
-    <form method="POST" action="/agregar">
-        <div class="input-group">
-            <input type="text" placeholder="Título..." name="titulo" required>
-            <input type="text" placeholder="Escribe una nueva tarea..." name="descripcion" required>
-        </div>
+        <main>
+            <form class="task-form" method="POST" action="/agregar" aria-label="Agregar tarea">
+                <div class="input-group">
+                    <label class="visually-hidden" for="titulo">Título</label>
+                    <input id="titulo" type="text" placeholder="Título..." name="titulo" required>
 
-        <button type="submit">Agregar</button>
+                    <label class="visually-hidden" for="descripcion">Descripción</label>
+                    <textarea id="descripcion" placeholder="Escribe una nueva tarea..." name="descripcion" required rows="2"></textarea>
+                </div>
 
-    </form>
-    <ul>
-    {% for tarea in tareas %}
-    <li class="tarea-item {{ tarea.estado }}">
-        <strong>{{ tarea.titulo }}</strong>
-        <span class="descripcion">{{ tarea.datos }}</span>
-
-        <div class="botones">
-            
-            
-            <form method="POST" action="/completar">
-                <input type="hidden" name="descripcion" value="{{ tarea.datos }}">    
-                <button type="submit">
-                    {{ metodos.completar_pendiente(tarea.datos) }}
-                </button>
+                <button class="btn btn-primary" type="submit">Agregar</button>
             </form>
 
+            <ul class="tareas-list">
+            {% for tarea in tareas %}
+            <li class="tarea-item {{ tarea.estado }}" role="listitem">
+                <div class="tarea-content">
+                    <h3 class="tarea-titulo">{{ tarea.titulo }}</h3>
+                    <p class="descripcion">{{ tarea.datos }}</p>
+                </div>
 
-                 
-            <form method="POST" action="/eliminar">
-                <input type="hidden" name="descripcion" value="{{ tarea.datos }}">
-                <button type="submit">
-                    Eliminar
-                </button>
-            </form>
+                <div class="botones">
+                    <form method="POST" action="/completar" class="action-form" aria-label="Completar tarea">
+                        <input type="hidden" name="descripcion" value="{{ tarea.datos }}">
+                        <button class="btn btn-icon btn-success" type="submit" aria-label="Completar {{ tarea.titulo }}">
+                            {{ metodos.completar_pendiente(tarea.datos) }}
+                        </button>
+                    </form>
 
-                    
-        </div>
-    </li>
-    {% endfor %}
-    </ul>
+                    <form method="POST" action="/eliminar" class="action-form" aria-label="Eliminar tarea">
+                        <input type="hidden" name="descripcion" value="{{ tarea.datos }}">
+                        <button class="btn btn-icon btn-destructive" type="submit" aria-label="Eliminar {{ tarea.titulo }}">
+                            Eliminar
+                        </button>
+                    </form>
+                </div>
+            </li>
+            {% endfor %}
+            </ul>
+        </main>
+    </div>
 
 </body>
 

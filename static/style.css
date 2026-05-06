@@ -1,86 +1,151 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap');
 
-/* Con esto podemos evitar margins y paddings que afecten nuestros elementos */
+/* CSS Variables: paleta y tokens */
+:root {
+    --bg: #f6f7f9;
+    --card: #ffffff;
+    --text: #1f2937;
+    --muted: #697388;
+    --primary: #0b74de;
+    --success: #16a34a;
+    --danger: #ef4444;
+    --radius: 10px;
+    --gap: 12px;
+}
+
+/* Reset base */
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
 
-/* Fondo y centrado general */
+/* Tipografía y layout base */
 body {
-    font-family: 'Poppins';
-    background-color: #d5d2d2;
-    padding: 28px;
+    font-family: 'Poppins', system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+    background-color: var(--bg);
+    color: var(--text);
+    padding: 20px;
     display: flex;
-    flex-direction: column;
-    align-items: center;
+    justify-content: center;
 }
 
-span {
-    padding-right: 20px;
+.container {
+    width: 100%;
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 20px;
 }
 
-h1 {
-    margin-top: 10px;
-    margin-bottom: 30px;
-    color: #2c3e50;
-}
-
-form {
-    display: flex;
-    gap: 10px;
-    margin-bottom: 30px;
-}
-
-form input {
-    flex: 1;
-    padding: 10px;
-}
-
-.tarea-item {
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-    margin-bottom: 12px;
-    padding: 14px 16px;
-    background-color: #c1c1c1;
-    border-radius: 12px;
-}
-
-.tarea-item strong {
-    display: block;
-    font-size: 1.05rem;
-    color: #2c3e50;
-}
-
-.tarea-item .descripcion {
-    display: block;
+.site-subtitle {
+    color: var(--muted);
     margin-top: 6px;
-    line-height: 1.5;
-    color: #333;
+    margin-bottom: 18px;
 }
 
-.tarea-item.completada .descripcion {
-    text-decoration: line-through;
-    color: #7f8c8d;
+/* Visually hidden utility for accessible labels */
+.visually-hidden {
+    position: absolute !important;
+    height: 1px; width: 1px;
+    overflow: hidden;
+    clip: rect(1px, 1px, 1px, 1px);
+    white-space: nowrap;
 }
 
-.botones {
+/* Form and inputs */
+.task-form {
     display: flex;
-    gap: 8px;
-    justify-content: flex-end;
-    padding-top: 6px;
+    gap: 12px;
+    align-items: flex-start;
+    margin-bottom: 18px;
 }
 
 .input-group {
-    border: 2px solid #ffffff;
-    border-radius: 8px;
+    flex: 1;
+    border: 1px solid transparent;
+    border-radius: var(--radius);
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    background: var(--card);
+    padding: 10px;
 }
 
-.input-group input {
+.input-group input,
+.input-group textarea {
     border: none;
     padding: 10px;
     display: block;
     outline: none;
+    resize: vertical;
+    font: inherit;
+    color: black;
+}
+
+.input-group input:focus,
+.input-group textarea:focus {
+    box-shadow: 0 0 0 3px rgba(11,116,222,0.12);
+    border-radius: 6px;
+}
+
+/* Buttons */
+.btn {
+    border: none;
+    cursor: pointer;
+    padding: 10px 12px;
+    border-radius: 8px;
+    font-weight: 500;
+}
+
+.btn-primary { background: var(--primary); color: #fff; }
+.btn-primary:focus { box-shadow: 0 0 0 4px rgba(11,116,222,0.18); }
+
+.btn-icon { padding: 8px 10px; }
+.btn-success { background: var(--success); color: #fff; }
+.btn-destructive { background: var(--danger); color: #fff; }
+
+.btn:focus { outline: none; }
+
+/* Lista de tareas */
+.tareas-list { list-style: none; margin-top: 6px; }
+
+.tarea-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    margin-bottom: 12px;
+    padding: 12px 14px;
+    background-color: var(--card);
+    border-radius: var(--radius);
+    box-shadow: 0 1px 2px rgba(16,24,40,0.04);
+    transition: transform 160ms ease, box-shadow 160ms ease;
+}
+
+.tarea-item:hover { transform: translateY(-2px); box-shadow: 0 6px 18px rgba(16,24,40,0.06); }
+
+.tarea-content { flex: 1; }
+.tarea-titulo { font-size: 1rem; color: var(--text); margin-bottom: 4px; }
+.descripcion { margin: 0; color: var(--muted); line-height: 1.4; }
+
+.tarea-item.completada .descripcion { text-decoration: line-through; color: #9ca3af; }
+
+.botones { display: flex; gap: 8px; align-items: center; }
+.action-form { margin: 0; }
+
+/* Dark mode support */
+@media (prefers-color-scheme: dark) {
+    :root {
+        --bg: #0b0f14;
+        --card: #0f1724;
+        --text: #e6eef8;
+        --muted: #9aa6b2;
+    }
+    body { background-color: var(--bg); }
+}
+
+/* Responsive adjustments */
+@media (max-width: 600px) {
+    .task-form { flex-direction: column; }
+    .btn { width: 100%; }
 }
